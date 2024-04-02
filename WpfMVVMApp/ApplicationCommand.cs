@@ -33,7 +33,5 @@ namespace WpfMVVMApp
         {
             execute?.Invoke(parameter);
         }
-
-        
     }
 }
