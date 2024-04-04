@@ -20,7 +20,9 @@ namespace WpfMVVMApp
         {
             InitializeComponent();
 
-            this.DataContext = new ApplicationViewModel();
+            this.DataContext = new ApplicationViewModel(
+                new ApplicationDialogService(), 
+                new JsonAppFileService());
         }
     }
 }

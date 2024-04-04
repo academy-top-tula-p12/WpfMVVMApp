@@ -13,6 +13,14 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="26"/>
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Padding" Value="20 0"/>
+        </Style>
+        <Style TargetType="MenuItem">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,8 +28,14 @@
             <ColumnDefinition Width="20" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
         <ListBox
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="0"
             FontSize="26"
             ItemsSource="{Binding Employees}"
@@ -38,7 +52,7 @@
             
         </ListBox>
         <StackPanel
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="2"
             DataContext="{Binding EmployeeSelected}">
 
@@ -47,5 +61,27 @@
             <TextBox Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" />
 
         </StackPanel>
+
+        <StackPanel 
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Button Command="{Binding AddCommand}">Add Employee</Button>
+            <Button Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding EmployeeSelected}">Delete Employee</Button>
+        </StackPanel>
+
+        <Menu 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"
+                          Command="{Binding OpenFileCommand}"/>
+                <MenuItem Header="Save"
+                          Command="{Binding SaveFileCommand}"/>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
